@@ -3,10 +3,14 @@
 namespace app\models;
 
 class Order extends Model {
-    private $id_order;
-    private $user_id;
-    private $user_phone;
-    private $pickpoint_id;
-    private $created_at;
-    private $order_status;
+    public $id_order;
+    public $user_id;
+    public $user_phone;
+    public $pickpoint_id;
+    public $created_at;
+    public $order_status;
+
+    protected function getTableName() {
+        return 'orders';
+    }
 }
