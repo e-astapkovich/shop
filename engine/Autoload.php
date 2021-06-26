@@ -1,5 +1,7 @@
 <?php
- 
+
+namespace app\engine;
+
 class Autoload {
     private $vendor = "app\\";
 
