@@ -11,7 +11,7 @@ class Product extends Model {
     public $manufacturer_id;
 
     protected function getTableName() {
-        return 'porducts';
+        return 'products';
     }
    
 }
