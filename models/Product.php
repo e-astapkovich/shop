@@ -3,10 +3,15 @@
 namespace app\models;
 
 class Product extends Model {
-    private $id_product;
-    private $name_product;
-    private $price;
-    private $image_link;
-    private $category_id;
-    private $manufacturer_id;
+    public $id_product;
+    public $name_product;
+    public $price;
+    public $image_link;
+    public $category_id;
+    public $manufacturer_id;
+
+    protected function getTableName() {
+        return 'porducts';
+    }
+   
 }

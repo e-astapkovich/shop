@@ -3,10 +3,15 @@
 namespace app\models;
 
 class User extends Model {
-    private $id_user;
-    private $name_user;
-    private $password_hash;
-    private $role;
-    private $status;
-    private $manager_id;
+    public $id_user;
+    public $name_user;
+    public $password_hash;
+    public $role;
+    public $status;
+    public $manager_id;
+
+    protected function getTableName() {
+        return 'users';
+    }
+
 }
