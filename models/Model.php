@@ -18,15 +18,16 @@ abstract class Model implements dbSuitable
 
     public function getOne($id)
     {
-        $sql = "SELECT * FROM `{$this->getTableName()}` WHERE `id` = $id";
-        $db = new Db();
-        return $this->db->queryOne($sql);
+        $sql = "SELECT * FROM `{$this->getTableName()}` WHERE `id` = :id";
+        $params = [
+            ':id' => $id
+        ];
+        return $this->db->queryOne($sql, $params);
     }
 
     public function getAll()
     {
         $sql = "SELECT * FROM `{$this->getTableName()}`";
-        $db = new Db();
         return $this->db->queryAll($sql);
     }
 

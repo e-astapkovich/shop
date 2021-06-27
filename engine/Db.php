@@ -11,41 +11,73 @@ class Db
         'host' => 'localhost:3306',
         'login' => 'root',
         'password' => 'root',
-        'database' => 'shop',
+        'database' => 'shop2',
         'charset' => 'utf8'
     ];
 
     protected $connection = null;
 
-    public function getConnection()
+    private function getConnection()
     {
         if (is_null($this->connection)) {
-            // $this->connection = new PDO("mysql:host=localhost;dbname=shop2", 'root', "root");
             $this->connection = new \PDO(
                 $this->prepareDsnString(),
                 $this->config['login'],
                 $this->config['password']
             );
         }
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         return $this->connection;
     }
 
     private function prepareDsnString()
     {
-        return sprintf("%s:host=%s;dbname=%s",
+        return sprintf(
+            "%s:host=%s;dbname=%s",
             $this->config['driver'],
             $this->config['host'],
             $this->config['database']
         );
     }
 
-    public function queryOne($sql)
+    public function lastInsertId()
     {
-        return $sql . "<br>";
+        //TODO: Вернуть id
     }
 
-    public function queryAll($sql)
+    /**
+     * Метод, непосредственно выполняющий запросы к БД.
+     */
+    private function query($sql, $params = null)
     {
-        return $sql . "<br>";
+        $sth = $this->getConnection()->prepare($sql);
+        $sth->execute($params);
+        return $sth;
+    }
+
+
+    /**
+     * Возвращает одну записи из БД
+     */
+    public function queryOne($sql, $params = null)
+    {
+        return $this->query($sql, $params)->fetch();
+    }
+
+    /**
+     * Возвращает несколько записей из БД
+     */
+    public function queryAll($sql, $params = null)
+    {
+        return $this->query($sql, $params)->fetchAll();
+    }
+
+    /**
+     * Выполняет запрос, и возвращает колчичество затронутых строк
+     */
+    public function execute($sql, $params = null)
+    {
+        return $this->query($sql, $params)->rowCount();
     }
 }
