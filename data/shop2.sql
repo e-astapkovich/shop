@@ -324,7 +324,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `id` (`id`),
   KEY `manager_id` (`manager_id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Покупатели';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Покупатели';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +333,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'User-1',NULL,'user','silver',3),(2,'User-2',NULL,'user','basic',1),(3,'User-3',NULL,'admin','gold',2),(4,'User-4',NULL,'user','silver',3),(5,'User-5',NULL,'user','silver',3),(6,'User-6',NULL,'user','basic',2),(7,'User-7',NULL,'user','gold',3),(8,'User-8',NULL,'admin','gold',1);
+INSERT INTO `users` VALUES (1,'User-1','$2y$10$H6o0el8aRquYfBYaSb.FmeNYgN4pI/Rhv2oAD9c52lnOv/Aoh8XQq','user','silver',3),(2,'User-2','$2y$10$O8rsX5DtS8jeQYpxAg75/ekrJBQJcDZnaiYZ0.QnraZegobY5um66','user','basic',1),(3,'User-3','$2y$10$1WTBFuZps0KXTz5B6/TFD.hZscp8ks9s4qPRDvXlFq4GC4Idb7W3e','admin','gold',2),(4,'User-4','$2y$10$KkJZVkiX2Sqjit8zSSuDp.jkPCVzyz67hbHe1AryCovOhhAU7MV0m','user','silver',3),(5,'User-5','$2y$10$2./AhTJkVojm6q5Sz0OSV.ct1KO21FgAOHnbdr7G0muu4BHxBoHDG','user','silver',3),(6,'User-6','$2y$10$XegbTAS3GyO/GbMAg2YMye3nnODDxvIJOJGo.CKvZgOk8rquf1JP2','user','basic',2),(7,'User-7','$2y$10$3T1PmeIcPMEog2PzSCB55.wjB7RlGvhKgmSLRIrkKVNprSVt.Shim','user','gold',3),(8,'User-8','$2y$10$W9QLnKqvZ1F.FBU20tcQzO57Nuh7qVSObeGSKmb4wvev56MVFGsIm','admin','gold',1),(9,'Admin','$2y$10$emvwKzjwm4p7KnueV.uht.vnRUWWJ8yBwxWcQ2tIuleCJeyvDdkXW','admin','gold',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-26 20:21:30
+-- Dump completed on 2021-06-26 23:36:42

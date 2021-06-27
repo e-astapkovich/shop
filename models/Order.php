@@ -3,7 +3,7 @@
 namespace app\models;
 
 class Order extends Model {
-    public $id_order;
+    public $id;
     public $user_id;
     public $user_phone;
     public $pickpoint_id;
