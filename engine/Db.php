@@ -62,9 +62,16 @@ class Db
     /**
      * Возвращает одну записи из БД
      */
-    public function queryOne($sql, $params = null)
+    public function queryOne($sql, $params)
     {
         return $this->query($sql, $params)->fetch();
+    }
+
+    public function queryOneObject($sql, $params, $className)
+    {
+        $sth = $this->query($sql, $params);
+        $sth->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $className);
+        return $sth->fetch();
     }
 
     /**

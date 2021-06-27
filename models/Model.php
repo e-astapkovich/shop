@@ -15,7 +15,8 @@ abstract class Model implements dbSuitable
         $params = [
             ':id' => $id
         ];
-        return Db::getInstance()->queryOne($sql, $params);
+        // return Db::getInstance()->queryOne($sql, $params);
+        return Db::getInstance()->queryOneObject($sql, $params, get_called_class());
     }
 
     public function getAll()

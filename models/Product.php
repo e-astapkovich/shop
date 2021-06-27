@@ -3,7 +3,7 @@
 namespace app\models;
 
 class Product extends Model {
-    public $id_product;
+    public $id;
     public $name_product;
     public $price;
     public $image_link;
