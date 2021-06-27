@@ -6,14 +6,14 @@ use app\engine\{Autoload, Db};
 include "../engine/Autoload.php";
 spl_autoload_register([new Autoload, "loadClass"]);
 
-$db = new Db;
+// $db = new Db;
 // $db->getConnection();
 
-$user = new User($db);
+$user = new User();
 var_dump($user->getOne(6));
 var_dump($user->getAll());
 
-$product = new Product($db);
+$product = new Product();
 var_dump($product->getOne(5));
 // echo $product->getOne(5);
 // echo $product->getAll();

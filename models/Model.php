@@ -7,14 +7,7 @@ use app\interfaces\dbSuitable;
 
 abstract class Model implements dbSuitable
 {
-    protected $db;
-
     abstract protected function getTableName();
-
-    public function __construct(Db $db)
-    {
-        $this->db = $db;
-    }
 
     public function getOne($id)
     {
@@ -22,13 +15,13 @@ abstract class Model implements dbSuitable
         $params = [
             ':id' => $id
         ];
-        return $this->db->queryOne($sql, $params);
+        return Db::getInstance()->queryOne($sql, $params);
     }
 
     public function getAll()
     {
         $sql = "SELECT * FROM `{$this->getTableName()}`";
-        return $this->db->queryAll($sql);
+        return Db::getInstance()->queryAll($sql);
     }
 
     public function insert(){
