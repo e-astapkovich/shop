@@ -2,10 +2,12 @@
 
 namespace app\engine;
 
-use PDO;
+use app\traits\TSingleton;
 
 class Db
 {
+    use TSingleton;
+
     private $config = [
         'driver' => 'mysql',
         'host' => 'localhost:3306',
@@ -14,24 +16,7 @@ class Db
         'database' => 'shop2',
         'charset' => 'utf8'
     ];
-    
-    /**
-     * Реализация паттерна Singleton
-     */
-    static private $instance = null;
-
-    private function __construct() {}
-    private function __clone() {}
-    private function __wakeup() {}
-
-    static public function getinstance() {
-        if (is_null(static::$instance)) {
-            static::$instance = new static();
-        }
-        return static::$instance;
-    }
-    /* Реализация паттерна Singleton */
-
+ 
     protected $connection = null;
 
     private function getConnection()
@@ -43,8 +28,8 @@ class Db
                 $this->config['password']
             );
         }
-        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+        $this->connection->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
         return $this->connection;
     }
 
