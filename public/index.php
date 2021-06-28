@@ -13,10 +13,4 @@ var_dump($user->getOne(4)->id);
 var_dump($user->getOne(4));
 var_dump($user->getAll());
 
-
-// public $id;
-// public $name_product;
-// public $price;
-// public $image_name;
-// public $category_id;
-// public $manufacturer_id;
+//TODO СДЕЛАТЬ НОВЫЙ ДАМП БАЗЫ - ИЗМЕНИЛ ИМЯ ПОЛЯ С КАРТИНКОЙ ТОВАРА
