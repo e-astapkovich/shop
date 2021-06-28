@@ -10,7 +10,7 @@ class Product extends Model {
     public $category_id;
     public $manufacturer_id;
 
-    public function __construct($name, $price, $image_name, $category_id, $manufacturer_id)
+    public function __construct($name = '', $price = '', $image_name = '', $category_id = '', $manufacturer_id = '')
     {
         $this->name_product = $name;
         $this->price = $price;
