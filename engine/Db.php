@@ -53,6 +53,9 @@ class Db
      */
     private function query($sql, $params = null)
     {
+        var_dump($sql);
+        // exit();
+
         $sth = $this->getConnection()->prepare($sql);
         $sth->execute($params);
         return $sth;

@@ -26,7 +26,22 @@ abstract class Model implements dbSuitable
     }
 
     public function insert(){
-        
+        $fields = [];
+        $values = [];
+        foreach ((array)$this as $key => $value) {
+            if ($key == 'id') {
+                continue;
+            }
+            $fields[] = $key;
+            $values[] = $value;
+        }
+        $fieldsString = implode(', ', $fields);
+        $valuesString = implode(', ', $values);
+        $sqlString = "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($valuesString)";
+
+        return Db::getInstance()->execute($sqlString);
+
+        // echo "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($valuesString)";
     }
 
     public function update(){
