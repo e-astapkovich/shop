@@ -63,13 +63,16 @@ class Db
 
 
     /**
-     * Возвращает одну записи из БД
+     * Возвращает одну записи из БД в виде ассоциативного массива
      */
     public function queryOne($sql, $params)
     {
         return $this->query($sql, $params)->fetch();
     }
 
+    /**
+     * Возвращает одну записи из БД в виде ассоциативного массива
+     */
     public function queryOneObject($sql, $params, $className)
     {
         $sth = $this->query($sql, $params);
