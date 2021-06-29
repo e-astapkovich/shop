@@ -45,7 +45,7 @@ class Db
 
     public function lastInsertId()
     {
-        //TODO: Вернуть id
+        return $this->connection->lastInsertId();
     }
 
     /**
