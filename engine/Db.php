@@ -54,7 +54,7 @@ class Db
     private function query($sql, $params = null)
     {
         // TODO Добавить проверку успешности выполнения запроса
-        
+
         // var_dump($sql);
         // var_dump($params);
         // exit();
@@ -74,7 +74,7 @@ class Db
     }
 
     /**
-     * Возвращает одну записи из БД в виде ассоциативного массива
+     * Возвращает одну записи из БД в виде объекта
      */
     public function queryOneObject($sql, $params, $className)
     {
@@ -92,7 +92,7 @@ class Db
     }
 
     /**
-     * Выполняет запрос, и возвращает колчичество затронутых строк
+     * Выполняет запрос, и возвращает количество затронутых строк
      */
     public function execute($sql, $params = null)
     {
