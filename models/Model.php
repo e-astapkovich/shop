@@ -55,6 +55,9 @@ abstract class Model implements dbSuitable
     }
 
     public function delete(){
-
+        $sqlString = "DELETE FROM {$this->getTableName()} WHERE `id` = :id";
+        $params = [":id" => $this->id];
+        Db::getInstance()->execute($sqlString, $params);
+        return true;
     }
 }
