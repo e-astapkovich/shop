@@ -15,8 +15,7 @@ spl_autoload_register([new Autoload, "loadClass"]);
 
 //TODO СДЕЛАТЬ НОВЫЙ ДАМП БАЗЫ - ИЗМЕНИЛ ИМЯ ПОЛЯ С КАРТИНКОЙ ТОВАРА
 
-$product = new Product('test_prod2', 123, 'test2.jpg', 1, 3);
-
+$product = new Product('test_prod22', 10000, 'test22.jpg', 4, 5);
 var_dump($product);
-
-echo $product->insert();
+$product->insert();
+var_dump($product);

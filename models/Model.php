@@ -30,6 +30,7 @@ abstract class Model implements dbSuitable
         $fields = [];
         $placeholders = [];
         $params = [];
+
         foreach ($this as $key => $value) {
             if ($key == 'id') {
                 continue;
@@ -38,19 +39,15 @@ abstract class Model implements dbSuitable
             $placeholders[] = ":$key";
             $params[":$key"] = (string)$value;
         }
-        var_dump($fields);
-        var_dump($placeholders);
-        var_dump($params);
         
         $fieldsString = implode(', ', $fields);
         $placeholdersString = implode(', ', $placeholders);
         $sqlString = "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($placeholdersString)";
-        var_dump($sqlString);
-        // exit();
 
-        return Db::getInstance()->execute($sqlString, $params);
-        
-        // echo "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($valuesString)";
+        Db::getInstance()->execute($sqlString, $params);
+        $this->id = Db::getInstance()->lastInsertId();
+
+        return true;
     }
 
     public function update(){

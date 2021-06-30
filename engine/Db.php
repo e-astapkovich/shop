@@ -54,8 +54,9 @@ class Db
     private function query($sql, $params = null)
     {
         // TODO Добавить проверку успешности выполнения запроса
-        var_dump($sql);
-        var_dump($params);
+        
+        // var_dump($sql);
+        // var_dump($params);
         // exit();
 
         $sth = $this->getConnection()->prepare($sql);
