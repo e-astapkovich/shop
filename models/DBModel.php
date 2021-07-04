@@ -19,7 +19,7 @@ abstract class DBModel extends Model
         return Db::getInstance()->queryOneObject($sql, $params, get_called_class());
     }
 
-    public function getAll()
+    public static function getAll()
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM `{$tableName}`";
