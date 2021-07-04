@@ -10,7 +10,7 @@ class Product extends Model {
     public $category_id;
     public $manufacturer_id;
 
-    public function __construct($name = '', $price = '', $image_name = '', $category_id = '', $manufacturer_id = '')
+    public function __construct($name = null, $price = null, $image_name = null, $category_id = null, $manufacturer_id = null)
     {
         $this->name_product = $name;
         $this->price = $price;
@@ -19,7 +19,7 @@ class Product extends Model {
         $this->manufacturer_id = $manufacturer_id;
     }
 
-    protected function getTableName() {
+    protected static function getTableName() {
         return 'products';
     }
    
