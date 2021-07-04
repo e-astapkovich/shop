@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class Order extends DBModel {
+final class Order extends DBModel {
     public $id;
     public $user_id;
     public $user_phone;

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class Cart extends DBModel
+final class Cart extends DBModel
 {
 
     public $id;
