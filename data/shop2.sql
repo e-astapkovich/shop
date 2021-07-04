@@ -62,7 +62,7 @@ CREATE TABLE `category` (
   `name_category` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Категории товаров';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Категории товаров';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'category-1'),(2,'category-2'),(3,'category-3'),(4,'category-4'),(5,'category-5');
+INSERT INTO `category` VALUES (1,'category-1'),(2,'category-2'),(3,'category-3'),(4,'category-4'),(5,'category-5'),(7,'shorts'),(8,'test');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `products` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name_product` varchar(255) COLLATE utf8_bin NOT NULL,
   `price` decimal(11,2) NOT NULL,
-  `image_link` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `image_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `category_id` bigint(20) unsigned NOT NULL,
   `manufacturer_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -234,7 +234,7 @@ CREATE TABLE `products` (
   KEY `manufacturer_id` (`manufacturer_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturer` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Товары';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Товары';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +243,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'product-1',111.11,'/img/prod-1.jpg',5,6),(2,'product-2',112.11,'/img/prod-2.jpg',3,5),(3,'product-3',111.13,'/img/prod-3.jpg',3,3),(4,'product-4',141.11,'/img/prod-4.jpg',2,1),(5,'product-5',511.11,'/img/prod-5.jpg',1,4),(6,'product-6',166.16,'/img/prod-6.jpg',2,2),(7,'product-7',771.71,'/img/prod-7.jpg',1,2),(8,'product-8',111.81,'/img/prod-8.jpg',4,2),(9,'product-9',191.11,'/img/prod-9.jpg',4,4),(10,'product-10',100.00,'/img/prod-10.jpg',5,6);
+INSERT INTO `products` VALUES (1,'product-1',111.11,'prod-1.jpg',5,6),(2,'product-2',112.11,'prod-2.jpg',3,5),(3,'product-3',111.13,'prod-3.jpg',3,3),(4,'product-4',141.11,'prod-4.jpg',2,1),(5,'product-5',511.11,'prod-5.jpg',1,4),(6,'product-6',166.16,'prod-6.jpg',2,2),(7,'product-7',771.71,'prod-7.jpg',1,2),(8,'product-8',111.81,'prod-8.jpg',4,2),(9,'product-9',191.11,'prod-9.jpg',4,4),(10,'product-10',100.00,'prod-10.jpg',5,6);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +333,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'User-1','$2y$10$H6o0el8aRquYfBYaSb.FmeNYgN4pI/Rhv2oAD9c52lnOv/Aoh8XQq','user','silver',3),(2,'User-2','$2y$10$O8rsX5DtS8jeQYpxAg75/ekrJBQJcDZnaiYZ0.QnraZegobY5um66','user','basic',1),(3,'User-3','$2y$10$1WTBFuZps0KXTz5B6/TFD.hZscp8ks9s4qPRDvXlFq4GC4Idb7W3e','admin','gold',2),(4,'User-4','$2y$10$KkJZVkiX2Sqjit8zSSuDp.jkPCVzyz67hbHe1AryCovOhhAU7MV0m','user','silver',3),(5,'User-5','$2y$10$2./AhTJkVojm6q5Sz0OSV.ct1KO21FgAOHnbdr7G0muu4BHxBoHDG','user','silver',3),(6,'User-6','$2y$10$XegbTAS3GyO/GbMAg2YMye3nnODDxvIJOJGo.CKvZgOk8rquf1JP2','user','basic',2),(7,'User-7','$2y$10$3T1PmeIcPMEog2PzSCB55.wjB7RlGvhKgmSLRIrkKVNprSVt.Shim','user','gold',3),(8,'User-8','$2y$10$W9QLnKqvZ1F.FBU20tcQzO57Nuh7qVSObeGSKmb4wvev56MVFGsIm','admin','gold',1),(9,'Admin','$2y$10$emvwKzjwm4p7KnueV.uht.vnRUWWJ8yBwxWcQ2tIuleCJeyvDdkXW','admin','gold',1);
+INSERT INTO `users` VALUES (1,'User-1','$2y$10$H6o0el8aRquYfBYaSb.FmeNYgN4pI/Rhv2oAD9c52lnOv/Aoh8XQq','user','silver',3),(2,'User-2','$2y$10$O8rsX5DtS8jeQYpxAg75/ekrJBQJcDZnaiYZ0.QnraZegobY5um66','user','basic',1),(3,'User-3','$2y$10$1WTBFuZps0KXTz5B6/TFD.hZscp8ks9s4qPRDvXlFq4GC4Idb7W3e','admin','gold',2),(4,'User-4','$2y$10$KkJZVkiX2Sqjit8zSSuDp.jkPCVzyz67hbHe1AryCovOhhAU7MV0m','user','silver',3),(5,'User-5','$2y$10$2./AhTJkVojm6q5Sz0OSV.ct1KO21FgAOHnbdr7G0muu4BHxBoHDG','user','silver',3),(6,'User-6','$2y$10$XegbTAS3GyO/GbMAg2YMye3nnODDxvIJOJGo.CKvZgOk8rquf1JP2','user','basic',2),(7,'User-7','$2y$10$3T1PmeIcPMEog2PzSCB55.wjB7RlGvhKgmSLRIrkKVNprSVt.Shim','user','gold',3),(8,'User-8','$2y$10$W9QLnKqvZ1F.FBU20tcQzO57Nuh7qVSObeGSKmb4wvev56MVFGsIm','admin','gold',1),(9,'admin','$2y$10$i4nnkNdtMXfZCykotjJ4aelSJ669KNHTxZmPz16DovJ7Eglbb.Q1C','admin','gold',1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-26 23:36:42
+-- Dump completed on 2021-06-30 22:54:07

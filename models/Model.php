@@ -26,7 +26,28 @@ abstract class Model implements dbSuitable
     }
 
     public function insert(){
+
+        $fields = [];
+        $placeholders = [];
+        $params = [];
+
+        foreach ($this as $key => $value) {
+            if ($key == 'id') {
+                continue;
+            }
+            $fields[] = "`$key`";
+            $placeholders[] = ":$key";
+            $params[":$key"] = (string)$value;
+        }
         
+        $fieldsString = implode(', ', $fields);
+        $placeholdersString = implode(', ', $placeholders);
+        $sqlString = "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($placeholdersString)";
+
+        Db::getInstance()->execute($sqlString, $params);
+        $this->id = Db::getInstance()->lastInsertId();
+
+        return true;
     }
 
     public function update(){
@@ -34,6 +55,9 @@ abstract class Model implements dbSuitable
     }
 
     public function delete(){
-
+        $sqlString = "DELETE FROM {$this->getTableName()} WHERE `id` = :id";
+        $params = [":id" => $this->id];
+        Db::getInstance()->execute($sqlString, $params);
+        return true;
     }
 }

@@ -45,7 +45,7 @@ class Db
 
     public function lastInsertId()
     {
-        //TODO: Вернуть id
+        return $this->connection->lastInsertId();
     }
 
     /**
@@ -53,6 +53,12 @@ class Db
      */
     private function query($sql, $params = null)
     {
+        // TODO Добавить проверку успешности выполнения запроса
+
+        // var_dump($sql);
+        // var_dump($params);
+        // exit();
+
         $sth = $this->getConnection()->prepare($sql);
         $sth->execute($params);
         return $sth;
@@ -60,13 +66,16 @@ class Db
 
 
     /**
-     * Возвращает одну записи из БД
+     * Возвращает одну записи из БД в виде ассоциативного массива
      */
     public function queryOne($sql, $params)
     {
         return $this->query($sql, $params)->fetch();
     }
 
+    /**
+     * Возвращает одну записи из БД в виде объекта
+     */
     public function queryOneObject($sql, $params, $className)
     {
         $sth = $this->query($sql, $params);
@@ -83,7 +92,7 @@ class Db
     }
 
     /**
-     * Выполняет запрос, и возвращает колчичество затронутых строк
+     * Выполняет запрос, и возвращает количество затронутых строк
      */
     public function execute($sql, $params = null)
     {
