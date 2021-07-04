@@ -19,7 +19,7 @@ class Product extends Model {
         $this->manufacturer_id = $manufacturer_id;
     }
 
-    protected function getTableName() {
+    protected static function getTableName() {
         return 'products';
     }
    

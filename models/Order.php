@@ -18,7 +18,7 @@ class Order extends Model {
         $this->order_status = $order_status;
     }
 
-    protected function getTableName() {
+    protected static function getTableName() {
         return 'orders';
     }
 }

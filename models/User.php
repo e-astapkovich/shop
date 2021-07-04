@@ -19,7 +19,7 @@ class User extends Model {
         $this->manager_id = $manager_id;
     }
 
-    protected function getTableName() {
+    protected static function getTableName() {
         return 'users';
     }
 

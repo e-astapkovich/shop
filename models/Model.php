@@ -7,11 +7,12 @@ use app\interfaces\dbSuitable;
 
 abstract class Model implements dbSuitable
 {
-    abstract protected function getTableName();
+    abstract protected static function getTableName();
 
-    public function getOne($id)
+    public static function getOne($id)
     {
-        $sql = "SELECT * FROM `{$this->getTableName()}` WHERE `id` = :id";
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM `{$tableName}` WHERE `id` = :id";
         $params = [
             ':id' => $id
         ];
@@ -21,7 +22,8 @@ abstract class Model implements dbSuitable
 
     public function getAll()
     {
-        $sql = "SELECT * FROM `{$this->getTableName()}`";
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM `{$tableName}`";
         return Db::getInstance()->queryAll($sql);
     }
 

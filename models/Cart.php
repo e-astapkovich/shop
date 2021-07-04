@@ -24,7 +24,7 @@ class Cart extends Model
         $this->status = $status;
     }
 
-    protected function getTableName()
+    protected static function getTableName()
     {
         return 'carts';
     }
