@@ -38,12 +38,13 @@ abstract class Model implements dbSuitable
                 continue;
             }
             $fields[] = "`$key`";
-            $placeholders[] = ":$key";
+            // $placeholders[] = ":$key";
             $params[":$key"] = (string)$value;
         }
         
         $fieldsString = implode(', ', $fields);
-        $placeholdersString = implode(', ', $placeholders);
+        // $placeholdersString = implode(', ', $placeholders);
+        $placeholdersString = implode(', ', array_keys($params));
         $sqlString = "INSERT INTO {$this->getTableName()} ($fieldsString) VALUES ($placeholdersString)";
 
         Db::getInstance()->execute($sqlString, $params);
