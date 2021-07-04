@@ -4,8 +4,17 @@ namespace app\controllers;
 
 class ProductController {
 
+    private $action;
+    private $actionDefault = 'catalog';
+
     public function runAction($action) {
-        echo "runAction " . $action;
+        $this->action = $action ?? $this->actionDefault;
+        $method = "action" . ucfirst($this->action);
+        if (method_exists($this, $method)) {
+            $this->$method();
+        } else {
+            exit("action is not exists");
+        }
     }
     
     public function actionCatalog() {
@@ -13,6 +22,6 @@ class ProductController {
     }
     
     public function actionItem() {
-        echo 'Item';
+        echo 'item';
     }
 }
