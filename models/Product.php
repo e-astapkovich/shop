@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class Product extends Model {
+final class Product extends DBModel {
     public $id;
     public $name_product;
     public $price;

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-class User extends Model {
+final class User extends DBModel {
     public $id;
     public $name_user;
     public $password_hash;
