@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-// use ...
-
-class Controller {
+abstract class Controller {
 
     protected $action;
     protected $actionDefault = 'index';

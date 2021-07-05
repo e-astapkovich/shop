@@ -9,7 +9,7 @@ class ProductController extends Controller {
     public function actionIndex() {
         echo $this->render('index');
     }
-    
+
     public function actionCatalog() {
         $catalog = Product::getAll();
         echo $this->render('catalog', ['catalog' => $catalog]);

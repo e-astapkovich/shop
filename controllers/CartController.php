@@ -6,4 +6,8 @@ use app\models\Cart;
 
 class CartController extends Controller {
 
+    public function actionIndex() {
+        echo $this->render('cart');
+    }
+
 }
