@@ -2,6 +2,9 @@
 
 namespace app\models;
 
+use app\engine\Db;
+
+
 final class Cart extends DBModel
 {
 
@@ -22,6 +25,13 @@ final class Cart extends DBModel
         $this->quantity = $quantity;
         $this->price = $price;
         $this->status = $status;
+    }
+
+    public static function getCart($user_id) {
+        // $tableName = static::getTableName();
+        $sql = "SELECT products.name_product, carts.quantity, carts.price FROM carts JOIN products ON product_id = products.id WHERE carts.user_id = :user_id AND carts.status = 'in_cart';";
+        $params = [':user_id' => $user_id];
+        return Db::getInstance()->queryAll($sql, $params);
     }
 
     protected static function getTableName()

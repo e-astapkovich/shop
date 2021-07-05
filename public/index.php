@@ -15,8 +15,6 @@ $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller
 
 if (class_exists($controllerClass)) {
     $controller = new $controllerClass;
-    // var_dump($controller);
-    // exit();
     $controller->runAction($actionName);
 } else {
     echo "404";
