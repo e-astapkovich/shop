@@ -7,11 +7,15 @@ use app\interfaces\dbSuitable;
 
 abstract class Model implements dbSuitable
 {
-    // public function __get() {
+    private $id;
+    public $modifiedFields = [];
 
-    // }
+    public function __get($name) {
+        return $this->$name;
+    }
 
-    // public function __set() {
-
-    // }
+    public function __set($name, $value) {
+        $this->modifiedFields[$name] = $value;
+        $this->$name = $value;
+    }
 }

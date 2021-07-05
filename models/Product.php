@@ -3,12 +3,12 @@
 namespace app\models;
 
 final class Product extends DBModel {
-    public $id;
-    public $name_product;
-    public $price;
-    public $image_name;
-    public $category_id;
-    public $manufacturer_id;
+
+    protected $name_product;
+    protected $price;
+    protected $image_name;
+    protected $category_id;
+    protected $manufacturer_id;
 
     public function __construct($name = null, $price = null, $image_name = null, $category_id = null, $manufacturer_id = null)
     {
