@@ -69,7 +69,7 @@ abstract class DBModel extends Model
 
         foreach ($this->modifiedFields as $key => $value) {
             if ($key == 'id') continue;
-            $setArray[] = "`$key`" . " = :" . $key;
+            $setArray[] = "`{$key}`= :{$key}";
             $params[":$key"] = $value;
         }
 
