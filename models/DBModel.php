@@ -70,6 +70,7 @@ abstract class DBModel extends Model
             $params[":$key"] = $value;
         }
 
+        $this->modifiedFields = [];
         $setString = implode(', ', $setArray);
         $sqlString = "UPDATE {$this->getTableName()} SET $setString WHERE `id`=:id";
         Db::getinstance()->execute($sqlString, $params);
