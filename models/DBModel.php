@@ -62,10 +62,13 @@ abstract class DBModel extends Model
 
     public function update(){
 
+        // var_dump($this->modifiedFields);
+
         $setArray = [];
         $params = [':id' => $this->id];
 
         foreach ($this->modifiedFields as $key => $value) {
+            if ($key == 'id') continue;
             $setArray[] = "`$key`" . " = :" . $key;
             $params[":$key"] = $value;
         }
@@ -74,6 +77,7 @@ abstract class DBModel extends Model
         $setString = implode(', ', $setArray);
         $sqlString = "UPDATE {$this->getTableName()} SET $setString WHERE `id`=:id";
         Db::getinstance()->execute($sqlString, $params);
+
         return true;
     }
 
