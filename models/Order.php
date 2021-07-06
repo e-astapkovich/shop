@@ -3,12 +3,12 @@
 namespace app\models;
 
 final class Order extends DBModel {
-    public $id;
-    public $user_id;
-    public $user_phone;
-    public $pickpoint_id;
-    public $created_at;
-    public $order_status;
+
+    protected $user_id;
+    protected $user_phone;
+    protected $pickpoint_id;
+    protected $created_at;
+    protected $order_status;
 
     public function __construct($user_id = null, $user_phone = null, $pickpoint_id = null, $order_status = null)
     {

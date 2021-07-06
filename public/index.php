@@ -1,5 +1,6 @@
 <?php
 
+use app\controllers\CartController;
 use app\models\{Model, Product, User, Cart, Order};
 use app\engine\{Autoload, Db};
 
@@ -7,31 +8,54 @@ include "../config/config.php";
 include "../engine/Autoload.php";
 spl_autoload_register([new Autoload, "loadClass"]);
 
-$controllerName = $_GET['c'] ?: "product";
-$actionName = $_GET['a'];
+// $controllerName = $_GET['c'] ?: "product";
+// $actionName = $_GET['a'];
 
-$controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
-var_dump($controllerClass);
-var_dump(class_exists($controllerClass));
+// $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 
-if (class_exists($controllerClass)) {
-    $controller = new $controllerClass;
-    $controller->runAction($actionName);
-} else {
-    echo "404";
-}
+// if (class_exists($controllerClass)) {
+//     $controller = new $controllerClass;
+//     $controller->runAction($actionName);
+// } else {
+//     echo "404";
+// }
 
 
 
 
-// $product = Product::getOne(3);
-// var_dump($product);
+/*
+    Тест CRUD-блока
+    с использованием универсального метода save()
+*/
 
-// $product = new Product('test_prod22', 10000, 'test22.jpg', 4, 5);
-// var_dump($product);
+////////////////////////////////////////////////////////////////////////
 
-// $product->insert();
-// var_dump($product);
+#update для продукта
+$prod = Product::getOne(3);
 
-// if ($product->delete()) unset($product);
-// var_dump($product);
+var_dump($product->modifiedFields);
+
+$prod->price = 11000;
+$prod->category_id = 3;
+$prod->cat_ide = 777;  // НЕСУЩЕСТВУЮЩЕЕ СВОЙСТВО ОБЪЕКТА product. Провека работы метода update;
+$prod->name_product = 'product-mmm';
+
+#create для продукта
+// $prod = new Product('pppp', 500, 'img.jpg', 1, 1);
+
+#применяем save для продукта
+$prod->save();
+
+////////////////////////////////////////////////////////////////////////
+
+#update для пользователя
+// $user = User::getOne(3);
+// $user->name_user = 'user-3m';
+
+#create для пользователя
+// $user = new User('test-user', 111, 'user', 'basic', 1);
+
+#применяем save
+// $user->save();
+
+////////////////////////////////////////////////////////////////////////

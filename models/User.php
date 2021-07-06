@@ -3,12 +3,12 @@
 namespace app\models;
 
 final class User extends DBModel {
-    public $id;
-    public $name_user;
-    public $password_hash;
-    public $role;
-    public $status;
-    public $manager_id;
+
+    protected $name_user;
+    protected $password_hash;
+    protected $role;
+    protected $status;
+    protected $manager_id;
 
     public function __construct($name_user = null, $password_hash = null, $role = null, $status = null, $manager_id = null)
     {

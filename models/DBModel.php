@@ -26,14 +26,23 @@ abstract class DBModel extends Model
         return Db::getInstance()->queryAll($sql);
     }
 
-    public function insert(){
+    public function save() {
+
+        if ($this->id) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+    }
+
+    public function insert() {
 
         $fields = [];
         $placeholders = [];
         $params = [];
 
         foreach ($this as $key => $value) {
-            if ($key == 'id') {
+            if ($key == 'id' or $key == 'modifiedFields') {
                 continue;
             }
             $fields[] = "`$key`";
@@ -48,12 +57,28 @@ abstract class DBModel extends Model
 
         Db::getInstance()->execute($sqlString, $params);
         $this->id = Db::getInstance()->lastInsertId();
-
         return true;
     }
 
     public function update(){
 
+        // var_dump($this->modifiedFields);
+
+        $setArray = [];
+        $params = [':id' => $this->id];
+
+        foreach ($this->modifiedFields as $key => $value) {
+            if ($key == 'id') continue;
+            $setArray[] = "`{$key}`= :{$key}";
+            $params[":$key"] = $value;
+        }
+
+        $this->modifiedFields = [];
+        $setString = implode(', ', $setArray);
+        $sqlString = "UPDATE {$this->getTableName()} SET $setString WHERE `id`=:id";
+        Db::getinstance()->execute($sqlString, $params);
+
+        return true;
     }
 
     public function delete(){
