@@ -2,6 +2,6 @@
 
 namespace app\interfaces;
 
-interface Rendable {
+interface IRender {
     public function renderTemplate($template);
 }

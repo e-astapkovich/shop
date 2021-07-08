@@ -2,9 +2,9 @@
 
 namespace app\engine;
 
-use app\interfaces\Rendable;
+use app\interfaces\IRender;
 
-class Render implements Rendable {
+class Render implements IRender {
 
     public function renderTemplate($template, $params = []) {
         ob_start();
