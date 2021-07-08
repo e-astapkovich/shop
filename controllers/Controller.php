@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\engine\Render;
+use app\interfaces\Rendable;
 
 abstract class Controller {
 
@@ -12,7 +13,7 @@ abstract class Controller {
     protected $useLayout = true;
     private $render;
 
-    public function __construct(Render $render)
+    public function __construct(Rendable $render)
     {
         $this->render = $render;
     }
