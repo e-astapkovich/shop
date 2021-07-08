@@ -2,12 +2,20 @@
 
 namespace app\controllers;
 
+use app\engine\Render;
+
 abstract class Controller {
 
     protected $action;
     protected $actionDefault = 'index';
     protected $layout = 'main';
     protected $useLayout = true;
+    private $render;
+
+    public function __construct(Render $render)
+    {
+        $this->render = $render;
+    }
 
     public function runAction($action) {
         $this->action = $action ?? $this->actionDefault;
@@ -32,13 +40,6 @@ abstract class Controller {
     }
 
     protected function renderTemplate($template, $params = []) {
-        ob_start();
-        extract($params);
-        $templatePath = VIEWS_DIR . $template . ".php";
-
-        if (file_exists($templatePath)) {
-            include $templatePath;
-            return ob_get_clean();
-        }
+        return $this->render->renderTemplate($template, $params);
     }
 }
