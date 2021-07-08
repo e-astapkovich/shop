@@ -29,17 +29,17 @@ abstract class Controller {
 
     public function render($template, $params = []) {
         if ($this->useLayout) {
-            echo $this->renderTemplate("layouts/" . $this->layout, [
-                'menu' => $this->renderTemplate('menu'),
-                'content' => $this->renderTemplate($template, $params)
+            echo $this->render->renderTemplate("layouts/" . $this->layout, [
+                'menu' => $this->render->renderTemplate('menu'),
+                'content' => $this->render->renderTemplate($template, $params)
                 ]
             );
         } else {
-            $this->renderTemplate($template, $params);
+            $this->render->renderTemplate($template, $params);
         }
     }
 
-    protected function renderTemplate($template, $params = []) {
-        return $this->render->renderTemplate($template, $params);
-    }
+    // protected function renderTemplate($template, $params = []) {
+    //     return $this->render->renderTemplate($template, $params);
+    // }
 }
