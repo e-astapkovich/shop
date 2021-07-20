@@ -7,7 +7,7 @@ use app\interfaces\dbSuitable;
 
 abstract class Model implements dbSuitable
 {
-    private $id;
+    protected $id;
     public $modifiedFields = [];
 
     public function __get($name)

@@ -8,17 +8,17 @@ include "../config/config.php";
 include "../engine/Autoload.php";
 spl_autoload_register([new Autoload, "loadClass"]);
 
-$controllerName = $_GET['c'] ?: "product";
-$actionName = $_GET['a'];
+// $controllerName = $_GET['c'] ?: "product";
+// $actionName = $_GET['a'];
 
-$controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
+// $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 
-if (class_exists($controllerClass)) {
-    $controller = new $controllerClass(new Render);
-    $controller->runAction($actionName);
-} else {
-    echo "<h2>404</h2>";
-}
+// if (class_exists($controllerClass)) {
+//     $controller = new $controllerClass(new Render);
+//     $controller->runAction($actionName);
+// } else {
+//     echo "<h2>404</h2>";
+// }
 
 
 
@@ -53,9 +53,10 @@ if (class_exists($controllerClass)) {
 // $user->name_user = 'user-3m';
 
 #create для пользователя
-// $user = new User('test-user', 111, 'user', 'basic', 1);
+$user = new User('test-user', 111, 'user', 'basic', 1);
 
 #применяем save
-// $user->save();
+$user->save();
+echo $user->id;
 
 ////////////////////////////////////////////////////////////////////////

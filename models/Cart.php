@@ -8,17 +8,17 @@ use app\engine\Db;
 final class Cart extends DBModel
 {
 
-    private $user_id;
-    private $session_id;
-    private $product_id;
-    private $quantity;
-    private $price;
-    private $created_at;
-    private $status;
+    protected $user_id;
+    protected $session_id;
+    protected $product_id;
+    protected $quantity;
+    protected $price;
+    protected $created_at;
+    protected $status;
 
     public function __construct($user_id = null, $session_id = null, $product_id = null, $quantity = null, $price = null, $status = null)
     {
-        $this->user = $user_id;
+        $this->user_id = $user_id;
         $this->session_id = $session_id;
         $this->product_id = $product_id;
         $this->quantity = $quantity;
