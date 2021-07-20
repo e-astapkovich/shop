@@ -2,12 +2,21 @@
 
 namespace app\controllers;
 
+use app\engine\Render;
+use app\interfaces\IRender;
+
 abstract class Controller {
 
     protected $action;
     protected $actionDefault = 'index';
     protected $layout = 'main';
     protected $useLayout = true;
+    private $render;
+
+    public function __construct(IRender $render)
+    {
+        $this->render = $render;
+    }
 
     public function runAction($action) {
         $this->action = $action ?? $this->actionDefault;
@@ -21,24 +30,17 @@ abstract class Controller {
 
     public function render($template, $params = []) {
         if ($this->useLayout) {
-            echo $this->renderTemplate("layouts/" . $this->layout, [
-                'menu' => $this->renderTemplate('menu'),
-                'content' => $this->renderTemplate($template, $params)
+            echo $this->render->renderTemplate("layouts/" . $this->layout, [
+                'menu' => $this->render->renderTemplate('menu'),
+                'content' => $this->render->renderTemplate($template, $params)
                 ]
             );
         } else {
-            $this->renderTemplate($template, $params);
+            $this->render->renderTemplate($template, $params);
         }
     }
 
-    protected function renderTemplate($template, $params = []) {
-        ob_start();
-        extract($params);
-        $templatePath = VIEWS_DIR . $template . ".php";
-
-        if (file_exists($templatePath)) {
-            include $templatePath;
-            return ob_get_clean();
-        }
-    }
+    // protected function renderTemplate($template, $params = []) {
+    //     return $this->render->renderTemplate($template, $params);
+    // }
 }
